@@ -65,6 +65,9 @@ function App() {
           <h1 className="tagline">We Don't Meet the Bar, We Set It.</h1>
           <p className="cover-subtitle">Where Precision, Integrity, and Results Define Every Claim</p>
         </div>
+        <a href="#contact" className="cta-button">
+  Submit a Claim
+</a>
         
         <div className="scroll-hint">
           <span>Scroll to explore</span>
@@ -241,7 +244,10 @@ function App() {
     </ul>
   </div>
 
-          {/* Footer */}
+          
+        </div>
+      </section>
+      {/* Footer */}
           <div className="footer">
             <div className="footer-content">
               <img className="footer-logo" src={LOGO_URL} alt="Northwoods Adjusting LLC" />
@@ -253,8 +259,6 @@ function App() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
     </>
   );
 }
