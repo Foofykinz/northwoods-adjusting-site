@@ -1,15 +1,31 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const LOGO_URL = '/images/logo.png';
 
 function SubmitClaim() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="submit-page-wrapper">
       {/* Simple Nav */}
       <nav className="nav">
         <div className="nav-content">
-          <div className="nav-logo">Northwoods Adjusting</div>
-          <Link to="/" className="nav-link">← Back to Home</Link>
+          <Link to="/" className="nav-logo">Northwoods Adjusting</Link>
+          
+          <button 
+            className={`hamburger ${menuOpen ? 'active' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
+            <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>← Back to Home</Link>
+          </div>
         </div>
       </nav>
 

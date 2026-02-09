@@ -8,43 +8,44 @@ const BADGE_URL = '/images/badge.png';
 
 function Home() {
   const [activeSection, setActiveSection] = useState('home');
+  const [menuOpen, setMenuOpen] = useState(false); // Add this
 
   useEffect(() => {
-  const handleScroll = () => {
-    const sections = ['home', 'about', 'services', 'coverage', 'process', 'contact'];
-    const scrollPosition = window.scrollY + 100;
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'services', 'coverage', 'process', 'contact'];
+      const scrollPosition = window.scrollY + 100;
 
-    for (const section of sections) {
-      const element = document.getElementById(section);
-      if (element) {
-        const { offsetTop, offsetHeight } = element;
-        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-          setActiveSection(section);
-          break;
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
         }
       }
-    }
-    
-    // Add fade-in on scroll for dark green sections
-    const fadeElements = document.querySelectorAll('.page-coverage, .page-contact');
-    fadeElements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight * 0.75;
-      if (isVisible) {
-        el.classList.add('visible');
-      }
-    });
-  };
+      
+      const fadeElements = document.querySelectorAll('.page-coverage, .page-contact');
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.75;
+        if (isVisible) {
+          el.classList.add('visible');
+        }
+      });
+    };
 
-  window.addEventListener('scroll', handleScroll);
-  handleScroll();
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setMenuOpen(false); // Close menu after clicking
     }
   };
 
@@ -53,8 +54,21 @@ function Home() {
       {/* Navigation */}
       <nav className="nav">
         <div className="nav-content">
-          <div className="nav-logo">Northwoods Adjusting</div>
-          <div className="nav-links">
+          <Link to="/" className="nav-logo">Northwoods Adjusting</Link>
+          
+          {/* Hamburger Icon */}
+          <button 
+            className={`hamburger ${menuOpen ? 'active' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          {/* Nav Links */}
+          <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
             {['home', 'about', 'services', 'coverage', 'process', 'contact'].map((section) => (
               <button
                 key={section}
@@ -64,7 +78,7 @@ function Home() {
                 {section.charAt(0).toUpperCase() + section.slice(1)}
               </button>
             ))}
-            <Link to="/submit" className="nav-link">Submit a Claim</Link>
+            <Link to="/submit" className="nav-link" onClick={() => setMenuOpen(false)}>Submit a Claim</Link>
           </div>
         </div>
       </nav>
