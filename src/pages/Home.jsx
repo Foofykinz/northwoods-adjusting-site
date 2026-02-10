@@ -26,14 +26,15 @@ function Home() {
         }
       }
       
-      const fadeElements = document.querySelectorAll('.page-coverage, .page-contact');
-      fadeElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight * 0.75;
-        if (isVisible) {
-          el.classList.add('visible');
-        }
-      });
+      // Add fade-in on scroll for all dark green sections
+const fadeElements = document.querySelectorAll('.page-about, .page-services, .page-coverage, .page-process, .page-contact');
+fadeElements.forEach(el => {
+  const rect = el.getBoundingClientRect();
+  const isVisible = rect.top < window.innerHeight * 0.75;
+  if (isVisible) {
+    el.classList.add('visible');
+  }
+});
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -246,9 +247,9 @@ function Home() {
       <div className="contact-cta">
         <h3>Ready to Submit a Claim?</h3>
         <p>Use our secure online form to get started</p>
-        <Link to="/submit" className="contact-submit-button">
-          Submit a Claim
-        </Link>
+        <Link to="/submit" className="contact-submit-button" onClick={() => window.scrollTo(0, 0)}>
+  Submit a Claim
+</Link>
       </div>
     </div>
   </div>

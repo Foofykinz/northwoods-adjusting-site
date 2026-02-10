@@ -28,44 +28,41 @@ function SubmitClaim() {
           </div>
         </div>
       </nav>
+      <section className="page page-cover-submit">
+  <div className="cover-content">
+    <img className="logo" src={LOGO_URL} alt="Northwoods Adjusting LLC" />
+    <h1 className="tagline">Submit Your Claim</h1>
+  </div>
+  
+  <div className="scroll-hint">
+    <span>Scroll to form</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+    </svg>
+  </div>
+</section>
+
+
 
       {/* Submit Content */}
       <section className="page page-submit-standalone">
         <div className="page-content">
-          <img className="page-logo" src={LOGO_URL} alt="Northwoods Adjusting" />
-          <h1 className="section-title">Submit a Claim</h1>
+
           
           
-          {/* Form Container */}
-          <div className="form-container">
-            <div style={{textAlign: 'center'}}>
-              <button 
-                className="show-form-button"
-                onClick={() => {
-                  const formFrame = document.getElementById('claim-form');
-                  const button = document.querySelector('.show-form-button');
-                  formFrame.style.display = 'block';
-                  button.style.display = 'none';
-                }}
-              >
-                Open Claim Submission Form
-              </button>
-            </div>
-            
-            <iframe 
-              id="claim-form"
-              src="https://docs.google.com/forms/d/e/1FAIpQLSeH7WoB9rC5mxEfWfyzQ2V6EXgZxym8v_Kg9Ok90Y4jpIvxCg/viewform?embedded=true"
-              width="100%" 
-              height="1400"
-              frameBorder="0"
-              marginHeight="0"
-              marginWidth="0"
-              title="Claim Submission Form"
-              style={{border: 'none', borderRadius: '12px', display: 'none'}}
-            >
-              Loading…
-            </iframe>
-          </div>
+{/* Form Container */}
+<div className="form-container">
+  <iframe 
+    src="https://forms.fillout.com/t/e9TS6iMxJRus"
+    width="100%" 
+    height="1200"
+    frameBorder="0"
+    title="Claim Submission Form"
+    style={{border: 'none', borderRadius: '12px'}}
+  >
+    Loading…
+  </iframe>
+</div>
 
           <div className="divider"></div>
 
